@@ -1,1 +1,1 @@
-web:gunicorn ahtcommerce.wsgi
+web: gunicorn ahtcommerce.wsgi

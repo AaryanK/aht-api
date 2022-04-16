@@ -31,6 +31,21 @@ class TicketSerializers(ModelSerializer):
         fields='__all__'
 
 class BookingSerializers(ModelSerializer):
+    passengers = CustomerSerializers(read_only=True,many=True)
     class Meta:
         model = Booking
-        fields = '__all__'
+        fields = (
+        'airline',
+        'pnr',
+        'flight_number',
+        'sector',
+        'flight_date',
+        'flight_time',
+        'passengers',
+        'expires_on',
+        'class_name',
+        'booked_on',
+        'ticketed',
+        'nop',
+        'unit_price')
+        

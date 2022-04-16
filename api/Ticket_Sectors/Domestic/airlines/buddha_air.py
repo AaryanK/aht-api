@@ -6,8 +6,6 @@ from .base import AirlineWebsite
 
 class BuddhaAir(AirlineWebsite):
 
-
-
     def __init__(self):
         base_url = "http://r2.buddhaair.com"
         super().__init__(base_url)
@@ -59,21 +57,13 @@ class BuddhaAir(AirlineWebsite):
         return session
 
 
-    def get_html_logged_in_session(self,response=False):
-        log1 = self.login(self.HTMLsession)
-        log2 = self.re_login(log1,response=response)
-
-        return log2
-
     def get_logged_in_session(self,response=False):
         log_1 = self.login(self.session)
         log_2 = self.re_login(log_1,response=response)
-        
-        return log_2
+        self.session = log_2
 
     def search_for_flights(self,ddd,mmm,yyy,fromsector,tosector):
-        session = self.get_logged_in_session()
-        cookies = self.cookies
+        session = self.session
         headers = {
         'Connection': 'keep-alive',
         'Cache-Control': 'max-age=0',
@@ -100,14 +90,13 @@ class BuddhaAir(AirlineWebsite):
         ('viewopt', 'view'),
         )
 
-        response = session.post('http://r2.buddhaair.com/u4OnlineReservation/fdetail.jsp', headers=headers, params=params, data=data, verify=False,cookies=cookies).content
+        response = session.post('http://r2.buddhaair.com/u4OnlineReservation/fdetail.jsp', headers=headers, params=params, data=data, verify=False,cookies=self.cookies).content
         soup = bs4.BeautifulSoup(response,'html.parser')
         self.session = session
         self.response,self.soup = response,soup
         self.js,self.flights = {},{}
         return self.response,self.soup
 
-    
     def get_fares(self,fare="NPR"):
         fares = self.soup.find(id="fare")
         trs = fares.find_all('tr')

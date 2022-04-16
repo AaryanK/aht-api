@@ -48,11 +48,11 @@ class YetiAir(AirlineWebsite):
     def get_logged_in_session(self,response=False):
         log_1 = self.login()
         
-        return log_1
+        self.session = log_1
 
 
     def search_for_flights(self,ddd,mmm,yyy,fromsector,tosector,passenger_count=1):
-        session = self.get_logged_in_session()
+        session = self.session
         cookies = cookies = {
                     'ASP.NET_SessionId': 'xwktbbyturyeoc45g2duoz45',
                 }

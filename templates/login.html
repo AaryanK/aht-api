@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+<div class="flex justify-center text-3xl text-white py-2 font-extrabold">Login</div>
+    <div class="flex justify-center py-32">
+      <div class="space-y-3">
+        
+        <div class="h-10 bg-gray-700 flex space-x-1 rounded-md">
+          <input name="" placeholder="Email" id="search" class="bg-gray-100 rounded-md w-80 px-2 shadow-2xl focus:shadow-green-500/50">
+        </div>
+        <div class="h-10 bg-gray-700 flex space-x-1 rounded-md">
+          <input name="" type="password" placeholder="Password" id="search" class="shadow-2xl bg-gray-100 rounded-md w-80 px-2 focus:shadow-green-500/50">
+        </div>
+        <div class="flex justify-center text-white py-2 rounded-lg"><button class="bg-transparent hover:bg-green-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded shadow-xl hover:shadow-green-500/50">
+          Login
+        </button></div>
+        
+      </div>
+    </div>
+{% endblock body %}
+

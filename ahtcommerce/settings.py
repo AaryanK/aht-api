@@ -41,10 +41,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'api.apps.ApiConfig',
     'private.apps.PrivateConfig',
+    'frontend.apps.FrontendConfig',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,7 +63,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    '127.0.0.1:8000'
+    'http://localhost:3000',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -68,7 +72,7 @@ ROOT_URLCONF = 'ahtcommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join('frontend/templates')],
+        'DIRS': [os.path.join('templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

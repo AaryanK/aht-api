@@ -94,10 +94,10 @@ class GunaAir(AirlineWebsite):
         log_1 = self.login(self.session)
         log_2 = self.re_login(log_1,response=response)
         
-        return log_2
+        self.session = log_2
 
     def search_for_flights(self,ddd,mmm,yyy,fromsector,tosector):
-        session = self.get_logged_in_session()
+        session = self.session
         headers = {
             'Connection': 'keep-alive',
             'Cache-Control': 'max-age=0',
